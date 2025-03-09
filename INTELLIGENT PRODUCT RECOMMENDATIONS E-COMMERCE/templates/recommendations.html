@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Recommendations</title>
+    <link rel="stylesheet" href="/static/styles/recommendations.css">
+</head>
+<body>
+    <div class="container">
+        
+
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+
+        {% if not content_based_rec.empty %}
+            <h2>Recommended Products</h2>
+            <div class="product-grid">
+                {% for index, row in content_based_rec.iterrows() %}
+                    <div class="product-card">
+                        <img src="{{ row['ImageURL'] }}" alt="Product Image">
+                        <div class="product-info">
+                            <p><strong>Name:</strong> {{ row['Name'] }}</p>
+                            <p><strong>Brand:</strong> {{ row['Brand'] }}</p>
+                            <p><strong>Rating:</strong> {{ row['Rating'] }}</p>
+                            <p><strong>Reviews:</strong> {{ row['ReviewCount'] }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
